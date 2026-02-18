@@ -100,7 +100,7 @@ DATABASES = {
     }
 }
 '''
-
+CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net','https://*.herokuapp.com'] # Set the CSRF_TRUSTED_ORIGINS to allow requests from the specified origins, which is necessary when deploying to platforms like Heroku that use different domains for the application. This helps prevent CSRF attacks by ensuring that only requests from trusted origins are accepted.
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
