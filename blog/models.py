@@ -14,3 +14,13 @@ class Post(models.Model):
     content = models.TextField() # A TextField to store the content of the post, which can be of any length.
     created_on = models.DateField(auto_now_add=True) # A DateField to store the date when the post was created. The auto_now_add=True parameter automatically sets the field to the current date when the post is created.
     status = models.IntegerField(choices=STATUS, default=0) # An IntegerField to store the status of the post, with choices defined by the STATUS tuple. The default value is set to 0 (Draft).
+    excerpt = models.TextField(blank=True) # A TextField to store an optional excerpt of the post, which can be left blank.
+    updated_on = models.DateField(auto_now=True) # A DateField to store the date when the post was last updated. The auto_now=True parameter automatically updates the field to the current date every time the post is saved.
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments') # A ForeignKey to establish a relationship between the Comment model and the Post model. The on_delete=models.CASCADE parameter ensures that if a post is deleted, all its associated comments will also be deleted. The related_name='comments' parameter allows us to access a post's comments using post.comments.
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='commenter') # A ForeignKey to establish a relationship between the Comment model and the User model. The on_delete=models.CASCADE parameter ensures that if a user is deleted, all their associated comments will also be deleted. The related_name='commenter' parameter allows us to access a user's comments using user.commenter.
+    body = models.TextField() # A TextField to store the content of the comment, which can be of any length.
+    approved = models.BooleanField(default=False) # A BooleanField to indicate whether the comment has been approved or not. The default value is set to False, meaning that comments will need to be approved before they are displayed.
+    created_on = models.DateTimeField(auto_now_add=True) # A DateTimeField to store the date and time when the comment was created. The auto_now_add=True parameter automatically sets the field to the current date and time when the comment is created.
