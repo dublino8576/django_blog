@@ -10,7 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path 
+# Import Path from pathlib to handle file paths
+import os   
+# Import os to access environment variables
+import dj_database_url 
+# Import dj_database_url to parse the DATABASE_URL environment variable
+if os.path.isfile('env.py'): # Check if env.py file exists
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,12 +80,27 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))} # Use dj_database_url to parse the DATABASE_URL environment variable and set it as the default database configuration
+'''dj_database allows you to parse the single string DATABASE_URL provided by Heroku and other services into the standard Django DATABASES configuration format, that looks like this:
+ DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "mydb",
+        "USER": "myuser",
+        "PASSWORD": "mypassword",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
+'''
 
 
 # Password validation
