@@ -88,12 +88,11 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))} # Use dj_database_url to parse the DATABASE_URL environment variable and set it as the default database configuration
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL').encode())} # Use dj_database_url to parse the DATABASE_URL environment variable and set it as the default database configuration
 '''dj_database allows you to parse the single string DATABASE_URL provided by Heroku and other services into the standard Django DATABASES configuration format, that looks like this:
  DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mydb",
         "USER": "myuser",
         "PASSWORD": "mypassword",
         "HOST": "localhost",
