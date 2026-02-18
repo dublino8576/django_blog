@@ -16,6 +16,10 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0) # An IntegerField to store the status of the post, with choices defined by the STATUS tuple. The default value is set to 0 (Draft).
     excerpt = models.TextField(blank=True) # A TextField to store an optional excerpt of the post, which can be left blank.
     updated_on = models.DateField(auto_now=True) # A DateField to store the date when the post was last updated. The auto_now=True parameter automatically updates the field to the current date every time the post is saved.
+    class Meta:
+        ordering = ['-created_on'] # Define the default ordering for the Post model, which will order posts by their created_on date in descending order (newest first).
+    def __str__(self):
+        return f"The title of this post is {self.title}" # Define the string representation of the Post model to return the title of the post, which will make it easier to identify posts in the admin interface and other contexts where the post is represented as a string.
 
 
 class Comment(models.Model):
@@ -24,3 +28,8 @@ class Comment(models.Model):
     body = models.TextField() # A TextField to store the content of the comment, which can be of any length.
     approved = models.BooleanField(default=False) # A BooleanField to indicate whether the comment has been approved or not. The default value is set to False, meaning that comments will need to be approved before they are displayed.
     created_on = models.DateTimeField(auto_now_add=True) # A DateTimeField to store the date and time when the comment was created. The auto_now_add=True parameter automatically sets the field to the current date and time when the comment is created.
+
+    class Meta:
+        ordering = ['created_on'] # Define the default ordering for the Comment model, which will order comments by their created_on date in ascending order (oldest first).
+    def __str__(self):
+        return f"Comment {self.post.title} by {self.author.username}" # Define the string representation of the Comment model to return a string that includes the title of the post the comment is associated with and the username of the author of the comment, which will make it easier to identify comments in the admin interface and other contexts where the comment is represented as a string.   
