@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.views import generic #import the generic view to create a class based view
+from .models import Post
 # Create your views here.
 
-def blog(request):
-    return HttpResponse("Hello, blog!")
+class PostList(generic.ListView):
+    queryset = Post.objects.all() #specifies the queryset to use for this view, in this case it will return all the posts in the database
+    template_name = 'post_list.html' #specifies the template to use for this view, if not specified it will look for a template called post_list.html by default
