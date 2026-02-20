@@ -37,6 +37,8 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') # Define the path to the tem
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # Define the path to the static files directory, which is used to store CSS, JavaScript, and image files for the project. By joining BASE_DIR with 'static', we ensure that the path is correctly set regardless of the operating system or environment.
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Define the path to the static root directory, which is used to collect all static files for deployment. By joining BASE_DIR with 'staticfiles', we ensure that the path is correctly set regardless of the operating system or environment. This is where the collectstatic command will gather all static files for production use.
+
 # Application definition
 
 INSTALLED_APPS = [
