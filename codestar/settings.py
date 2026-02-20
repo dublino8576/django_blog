@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY') # Get the SECRET_KEY from environment variables, which is set in env.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
@@ -43,8 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', 'blog',
+    'django.contrib.staticfiles',  'django_summernote', 'blog',
 ]
+#summernote is a rich text editor that allows us to create and edit posts with formatted text, images, and other media. By adding 'django_summernote' to the INSTALLED_APPS, we can use it in our project to enhance the content creation experience for our blog posts. 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

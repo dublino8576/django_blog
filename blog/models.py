@@ -12,10 +12,10 @@ class Post(models.Model):
     slug = models.SlugField(max_length=200, unique=True) # A SlugField to store a URL-friendly version of the title, with a maximum length of 200 characters. The unique=True parameter ensures that no two posts can have the same slug. (slug is a short label for something, containing only letters, numbers, underscores or hyphens. They’re generally used in URLs. Slug is a short name for article in publishing. It’s a part of URL which identifies a particular page on a website in an easy to read form.)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts') # A ForeignKey to establish a relationship between the Post model and the User model. The on_delete=models.CASCADE parameter ensures that if a user is deleted, all their associated posts will also be deleted. The related_name='blog_posts' parameter allows us to access a user's posts using user.blog_posts.
     content = models.TextField() # A TextField to store the content of the post, which can be of any length.
-    created_on = models.DateField(auto_now_add=True) # A DateField to store the date when the post was created. The auto_now_add=True parameter automatically sets the field to the current date when the post is created.
+    created_on = models.DateTimeField(auto_now_add=True) # A DateTimeField to store the date and time when the post was created. The auto_now_add=True parameter automatically sets the field to the current date and time when the post is created.
     status = models.IntegerField(choices=STATUS, default=0) # An IntegerField to store the status of the post, with choices defined by the STATUS tuple. The default value is set to 0 (Draft).
     excerpt = models.TextField(blank=True) # A TextField to store an optional excerpt of the post, which can be left blank.
-    updated_on = models.DateField(auto_now=True) # A DateField to store the date when the post was last updated. The auto_now=True parameter automatically updates the field to the current date every time the post is saved.
+    updated_on = models.DateTimeField(auto_now=True) # A DateTimeField to store the date and time when the post was last updated. The auto_now=True parameter automatically updates the field to the current date and time every time the post is saved.
     class Meta:
         ordering = ['-created_on'] # Define the default ordering for the Post model, which will order posts by their created_on date in descending order (newest first).
     def __str__(self):
@@ -28,6 +28,7 @@ class Comment(models.Model):
     body = models.TextField() # A TextField to store the content of the comment, which can be of any length.
     approved = models.BooleanField(default=False) # A BooleanField to indicate whether the comment has been approved or not. The default value is set to False, meaning that comments will need to be approved before they are displayed.
     created_on = models.DateTimeField(auto_now_add=True) # A DateTimeField to store the date and time when the comment was created. The auto_now_add=True parameter automatically sets the field to the current date and time when the comment is created.
+    updated_on = models.DateTimeField(auto_now=True) # A DateTimeField to store the date and time when the comment was last updated. The auto_now=True parameter automatically updates the field to the current date and time every time the comment is saved.
 
     class Meta:
         ordering = ['created_on'] # Define the default ordering for the Comment model, which will order comments by their created_on date in ascending order (oldest first).

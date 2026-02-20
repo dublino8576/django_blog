@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path, include #import the include function to include urls from the blog app
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')), #tells django to look in the django_summernote app for any urls that start with 'summernote/'
     path('', include('blog.urls'), name='blog-urls'), 
     #tells django to look in the blog app for any urls that start with '',(the root url)
-    path('admin/', admin.site.urls),
     ]
