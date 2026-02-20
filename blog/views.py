@@ -4,5 +4,6 @@ from .models import Post
 # Create your views here.
 
 class PostList(generic.ListView):
-    queryset = Post.objects.all() #specifies the queryset to use for this view, in this case it will return all the posts in the database
-    template_name = 'post_list.html' #specifies the template to use for this view, if not specified it will look for a template called post_list.html by default
+    queryset = Post.objects.filter(status=1) #specifies the queryset to use for this view, in this case it will return all the posts in the database
+    template_name = 'blog/index.html' #specifies the template to use for this view, if not specified it will look for a template called post_list.html by default
+    paginate_by = 6 #specifies the number of posts to display per page, in this case it will display 6 posts per page
