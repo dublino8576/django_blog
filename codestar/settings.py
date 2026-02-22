@@ -37,7 +37,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') # Define the path to the tem
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # Define the path to the static files directory, which is used to store CSS, JavaScript, and image files for the project. By joining BASE_DIR with 'static', we ensure that the path is correctly set regardless of the operating system or environment.
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Define the path to the static root directory, which is used to collect all static files for deployment. By joining BASE_DIR with 'staticfiles', we ensure that the path is correctly set regardless of the operating system or environment. This is where the collectstatic command will gather all static files for production use.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Define the path to the static root directory, which is used to collect all static files for deployment. By joining BASE_DIR with 'staticfiles', we ensure that the path is correctly set regardless of the operating system or environment. This is where the collectstatic command will gather all static files for production use. 
+#DO python manage.py collectstatic to collect static files into this directory for deployment.
+
 
 # Application definition
 
@@ -52,13 +54,13 @@ INSTALLED_APPS = [
 #summernote is a rich text editor that allows us to create and edit posts with formatted text, images, and other media. By adding 'django_summernote' to the INSTALLED_APPS, we can use it in our project to enhance the content creation experience for our blog posts. 
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware', 'whitenoise.middleware.WhiteNoiseMiddleware', # Add WhiteNoise middleware to serve static files in production, must be placed after SecurityMiddleware to ensure that security headers are applied to static files as well.
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', 
 ]
 
 ROOT_URLCONF = 'codestar.urls'
