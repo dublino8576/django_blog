@@ -1,5 +1,9 @@
 from . import views #import the views from the current directory (the blog app)
 from django.urls import path # import the path function to create urls
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('<slug:slug>/', views.post_detail, name = 'post_detail'), #create a url for the post detail view that takes a slug as a parameter and names it 'post_detail'

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  {% if about %}
+  <div class="row">
+    <div class="col-4 text-center">
+      <img src="{% static 'images/nobody.jpg' %}" width="75%" />
+    </div>
+    <div class="col-8">
+      <h2>{{ about.title }}</h2>
+      <div>{{ about.content|safe }}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-right">
+      <p class="text-end"><em>Updated on: {{ about.updated_on }}</em></p>
+    </div>
+  </div>
+  {% else %}
+  <div class="row">
+    <div class="col-12">
+      <p class="alert alert-warning">
+        No About content has been created yet. Please add content through the
+        admin panel.
+      </p>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock content %}
