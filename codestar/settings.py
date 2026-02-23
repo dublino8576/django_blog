@@ -53,14 +53,17 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount', 'django_summernote', 'blog', 'about',
+    'allauth.socialaccount', 
+    'crispy_forms',
+    'crispy_bootstrap5','django_summernote', 'blog', 'about',
 ]
 #summernote is a rich text editor that allows us to create and edit posts with formatted text, images, and other media. By adding 'django_summernote' to the INSTALLED_APPS, we can use it in our project to enhance the content creation experience for our blog posts. 
 
 SITE_ID = 1 # Set the SITE_ID to 1, which is required by django.contrib.sites to identify the current site. This is necessary for features like authentication and social account integration provided by django-allauth. By setting SITE_ID to 1, we indicate that we are using the default site configuration for our project.
 LOGIN_REDIRECT_URL = '/' # Set the LOGIN_REDIRECT_URL to '/', which means that after a user logs in, they will be redirected to the home page of the site. This is a common practice to provide a seamless user experience after authentication. By setting this URL, we ensure that users are taken to the appropriate page after logging in, rather than being left on a default or unintended page.
 LOGOUT_REDIRECT_URL = '/' # Set the LOGOUT_REDIRECT_URL to '/', which means that after a user logs out, they will be redirected to the home page of the site. This is a common practice to provide a seamless user experience after logging out. By setting this URL, we ensure that users are taken to the appropriate page after logging out, rather than being left on a default or unintended page.
-
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware', 'whitenoise.middleware.WhiteNoiseMiddleware', # Add WhiteNoise middleware to serve static files in production, must be placed after SecurityMiddleware to ensure that security headers are applied to static files as well.
