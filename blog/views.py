@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic #import the generic view to create a class based view
-from .models import Post
+from .models import Post, Comment #import the Post and Comment models to use in the views
 from django.shortcuts import get_object_or_404 #import the get_object_or_404 function to get an object from the database or return a 404 error if it does not exist
 # Create your views here.
 
@@ -24,4 +24,6 @@ def post_detail(request, slug):
     '''
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
-    return render(request, 'blog/post_detail.html', {'post': post })
+    comments = post.comments.all().order_by("created_on") #get all the comments for the post and order them by the date they were created
+    comment_count = post.comments.filter(approved=True).count()
+    return render(request, 'blog/post_detail.html', {'post': post, 'comments': comments, 'comment_count': comment_count})
