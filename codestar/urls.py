@@ -20,6 +20,7 @@ from django.urls import path, include #import the include function to include ur
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')), #tells django to look in the django_summernote app for any urls that start with 'summernote/'
+    path('about/', include('about.urls'), name='about-urls'), #tells django to look in the about app for any urls that start with 'about/'
     path('', include('blog.urls'), name='blog-urls'), 
     #tells django to look in the blog app for any urls that start with '',(the root url)
     ]
