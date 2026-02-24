@@ -49,13 +49,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', 
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount', 
     'crispy_forms',
-    'crispy_bootstrap5','django_summernote', 'blog', 'about',
+    'crispy_bootstrap5','django_summernote', 'cloudinary', 'blog', 'about',
 ]
 #summernote is a rich text editor that allows us to create and edit posts with formatted text, images, and other media. By adding 'django_summernote' to the INSTALLED_APPS, we can use it in our project to enhance the content creation experience for our blog posts. 
 

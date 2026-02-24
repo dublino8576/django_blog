@@ -73,7 +73,7 @@ def comment_edit(request, slug, comment_id):
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id) #PK stands for primary key, it is used to get the comment object from the database based on the comment_id passed in the URL
-    comment_form = CommentForm(data=request.POST, instance=comment)
+    comment_form = CommentForm(data=request.POST, instance=comment) #instance=comment is used to populate the form with the existing comment data, so that when the form is submitted, it will update the existing comment instead of creating a new one
 
     if comment_form.is_valid() and comment.author == request.user:
         comment = comment_form.save(commit=False)
