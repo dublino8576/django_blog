@@ -6,6 +6,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('<slug:slug>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'), #create a url for the comment edit view that takes a slug and comment_id as parameters and names it 'comment_edit'
+    path('<slug:slug>/delete_comment/<int:comment_id>/', views.comment_delete, name='comment_delete'), #create a url for the comment delete view that takes a slug and comment_id as parameters and names it 'comment_delete'
     path('<slug:slug>/', views.post_detail, name = 'post_detail'), #create a url for the post detail view that takes a slug as a parameter and names it 'post_detail'
     path('', views.PostList.as_view(), name='home'), #create a url for the root url that uses the PostList view and names it 'home'
     ] #as_view() is a method that converts the PostList class into a view that can be used in the url patterns
