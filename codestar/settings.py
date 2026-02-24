@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY') # Get the SECRET_KEY from environment variables, which is set in env.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') # Define the path to the templates directory, which is used to store HTML templates for the project. By joining BASE_DIR with 'templates', we ensure that the path is correctly set regardless of the operating system or environment.
@@ -49,13 +49,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', 
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount', 
     'crispy_forms',
-    'crispy_bootstrap5','django_summernote', 'blog', 'about',
+    'crispy_bootstrap5','django_summernote', 'cloudinary', 'blog', 'about',
 ]
 #summernote is a rich text editor that allows us to create and edit posts with formatted text, images, and other media. By adding 'django_summernote' to the INSTALLED_APPS, we can use it in our project to enhance the content creation experience for our blog posts. 
 

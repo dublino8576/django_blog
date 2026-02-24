@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User # Import the User model from Django's built-in authentication system to establish a relationship between the Post model and the User model, allowing us to associate each post with a specific user (author).
+from cloudinary.models import CloudinaryField
+#cloudinary is a cloud-based service that provides an easy way to manage and serve images and videos. By importing CloudinaryField, we can use it in our models to store and manage media files associated with our posts, such as images or videos, which can enhance the visual appeal of our blog posts and provide a better user experience. Heroku does not allow us to store media files on the server, so we use Cloudinary to handle media storage and delivery in our Django application.
+
 
 STATUS = (
     (0, "Draft"),
@@ -11,6 +14,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=True) # A CharField to store the title of the post, with a maximum length of 200 characters. The unique=True parameter ensures that no two posts can have the same title.
     slug = models.SlugField(max_length=200, unique=True) # A SlugField to store a URL-friendly version of the title, with a maximum length of 200 characters. The unique=True parameter ensures that no two posts can have the same slug. (slug is a short label for something, containing only letters, numbers, underscores or hyphens. They’re generally used in URLs. Slug is a short name for article in publishing. It’s a part of URL which identifies a particular page on a website in an easy to read form.)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts') # A ForeignKey to establish a relationship between the Post model and the User model. The on_delete=models.CASCADE parameter ensures that if a user is deleted, all their associated posts will also be deleted. The related_name='blog_posts' parameter allows us to access a user's posts using user.blog_posts.
+    featured_image = CloudinaryField('image', default='placeholder') # A CloudinaryField to store the featured image for the post. The default value is set to 'placeholder', which means that if no image is uploaded, a placeholder image will be used instead. This field allows us to easily manage and serve images associated with our posts using Cloudinary's cloud-based service.
     content = models.TextField() # A TextField to store the content of the post, which can be of any length.
     created_on = models.DateTimeField(auto_now_add=True) # A DateTimeField to store the date and time when the post was created. The auto_now_add=True parameter automatically sets the field to the current date and time when the post is created.
     status = models.IntegerField(choices=STATUS, default=0) # An IntegerField to store the status of the post, with choices defined by the STATUS tuple. The default value is set to 0 (Draft).
