@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY') # Get the SECRET_KEY from environment variables, which is set in env.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') # Define the path to the templates directory, which is used to store HTML templates for the project. By joining BASE_DIR with 'templates', we ensure that the path is correctly set regardless of the operating system or environment.
