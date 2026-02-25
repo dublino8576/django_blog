@@ -18,6 +18,7 @@ import dj_database_url
 # Import dj_database_url to parse the DATABASE_URL environment variable
 if os.path.isfile('env.py'): # Check if env.py file exists
     import env
+import sys # Import sys to use built-in SQLite3 database for testing purposes when running tests with pytest. This allows us to use a lightweight database for testing without affecting the production database configuration.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,6 +121,11 @@ DATABASES = {
     }
 }
 '''
+
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3' # Check if the command being run is a test command (e.g., pytest) and if so, set the database engine to SQLite3 for testing purposes. This allows us to use a lightweight database for testing without affecting the production database configuration, which is typically set to PostgreSQL when deploying to platforms like Heroku. By using SQLite3 for tests, we can ensure that our tests run quickly and efficiently without the overhead of connecting to a remote database.
+    
+
 CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net','https://*.herokuapp.com'] # Set the CSRF_TRUSTED_ORIGINS to allow requests from the specified origins, which is necessary when deploying to platforms like Heroku that use different domains for the application. This helps prevent CSRF attacks by ensuring that only requests from trusted origins are accepted.
 
 # Password validation
